@@ -11,6 +11,7 @@
 #include "TrackingTools/TrajectoryState/interface/TrajectoryStateTransform.h"
 #include "TrackingTools/TrajectoryState/interface/TrajectoryStateOnSurface.h"
 #include "RecoTracker/TkSeedingLayers/interface/SeedComparitor.h"
+#include "DataFormats/SiStripDetId/interface/SiStripDetId.h"
 
 namespace {
 
@@ -59,6 +60,22 @@ bool SeedFromConsecutiveHitsCreator::initialKinematic(GlobalTrajectoryParameters
 
   TransientTrackingRecHit::ConstRecHitPointer tth1 = hits[0];
   TransientTrackingRecHit::ConstRecHitPointer tth2 = hits[1];
+
+  if (hits.size()==3 && !(hits[2]->transientHits().size()==1 && (hits[2]->geographicalId().subdetId()==SiStripDetId::TID || 
+								 hits[2]->geographicalId().subdetId()==SiStripDetId::TEC ) ) ) {
+    //if 3rd hit is mono and endcap pT is not well defined so take initial state from pair
+    const TransientTrackingRecHit::ConstRecHitPointer& tth3 = hits[2];
+    FastHelix helix(tth3->globalPosition(), tth2->globalPosition(), tth1->globalPosition(), nomField, &*bfield, tth1->globalPosition());
+    kine = helix.stateAtVertex();
+    if unlikely(isBOFF && (theBOFFMomentum > 0)) {
+      kine = GlobalTrajectoryParameters(kine.position(),
+					kine.momentum().unit() * theBOFFMomentum,
+					kine.charge(),
+					&*bfield);
+    }
+    return (filter ? filter->compatible(hits, kine, helix, *region) : true); 
+  } 
+  
   const GlobalPoint& vertexPos = region->origin();
 
   FastHelix helix(tth2->globalPosition(), tth1->globalPosition(), vertexPos, nomField,&*bfield);

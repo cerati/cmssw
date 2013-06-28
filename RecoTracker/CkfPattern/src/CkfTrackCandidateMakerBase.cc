@@ -188,6 +188,8 @@ namespace cms{
       // Loop over seeds
       size_t collseed_size = collseed->size(); 
       for (size_t j = 0; j < collseed_size; j++){
+
+	LogDebug("CkfPattern") << "======== Begin to look for trajectories from seed " << j << " ========"<<endl;
        
 	// Check if seed hits already used by another track
 	if (theSeedCleaner && !theSeedCleaner->good( &((*collseed)[j])) ) {
