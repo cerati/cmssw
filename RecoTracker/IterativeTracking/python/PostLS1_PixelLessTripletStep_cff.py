@@ -53,7 +53,7 @@ pixelLessStepSeedsA.OrderedHitsFactoryPSet.GeneratorPSet = cms.PSet(
     debug = cms.bool(False),
     detIdsToDebug = cms.vint32(0,0,0)
 )
-pixelLessStepSeedsA.SeedCreatorPSet.ComponentName = 'SeedFromConsecutiveHitsCreator'
+pixelLessStepSeedsA.SeedCreatorPSet.ComponentName = 'SeedFromConsecutiveHitsTripletOnlyCreator'
 pixelLessStepSeedsA.RegionFactoryPSet.RegionPSet.ptMin = 0.55
 pixelLessStepSeedsA.RegionFactoryPSet.RegionPSet.originHalfLength = 12.0
 pixelLessStepSeedsA.RegionFactoryPSet.RegionPSet.originRadius = 1.
@@ -130,7 +130,7 @@ pixelLessStepSeedsB.OrderedHitsFactoryPSet.GeneratorPSet = cms.PSet(
     debug = cms.bool(False),
     detIdsToDebug = cms.vint32(0,0,0)
 )
-pixelLessStepSeedsB.SeedCreatorPSet.ComponentName = 'SeedFromConsecutiveHitsCreator'
+pixelLessStepSeedsB.SeedCreatorPSet.ComponentName = 'SeedFromConsecutiveHitsTripletOnlyCreator'
 pixelLessStepSeedsB.RegionFactoryPSet.RegionPSet.ptMin = 0.4 #0.5 in v2
 pixelLessStepSeedsB.RegionFactoryPSet.RegionPSet.originHalfLength = 15.0
 pixelLessStepSeedsB.RegionFactoryPSet.RegionPSet.originRadius = 1.5

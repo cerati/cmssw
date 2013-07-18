@@ -76,7 +76,7 @@ tobTecStepSeedsTripl.OrderedHitsFactoryPSet.GeneratorPSet = cms.PSet(
     debug = cms.bool(False),
     detIdsToDebug = cms.vint32(0,0,0)
 )
-tobTecStepSeedsTripl.SeedCreatorPSet.ComponentName = 'SeedFromConsecutiveHitsCreator'
+tobTecStepSeedsTripl.SeedCreatorPSet.ComponentName = 'SeedFromConsecutiveHitsTripletOnlyCreator'
 tobTecStepSeedsTripl.RegionFactoryPSet.RegionPSet.ptMin = 0.65
 tobTecStepSeedsTripl.RegionFactoryPSet.RegionPSet.originHalfLength = 20.0
 tobTecStepSeedsTripl.RegionFactoryPSet.RegionPSet.originRadius = 3.5

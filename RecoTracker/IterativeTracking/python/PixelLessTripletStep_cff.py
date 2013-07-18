@@ -80,7 +80,7 @@ pixelLessStepSeeds.OrderedHitsFactoryPSet.GeneratorPSet = cms.PSet(
     debug = cms.bool(False),
     detIdsToDebug = cms.vint32(0,0,0)
 )
-pixelLessStepSeeds.SeedCreatorPSet.ComponentName = 'SeedFromConsecutiveHitsCreator'
+pixelLessStepSeeds.SeedCreatorPSet.ComponentName = 'SeedFromConsecutiveHitsTripletOnlyCreator'
 pixelLessStepSeeds.RegionFactoryPSet.RegionPSet.ptMin = 0.4
 pixelLessStepSeeds.RegionFactoryPSet.RegionPSet.originHalfLength = 15.0
 pixelLessStepSeeds.RegionFactoryPSet.RegionPSet.originRadius = 2.5
