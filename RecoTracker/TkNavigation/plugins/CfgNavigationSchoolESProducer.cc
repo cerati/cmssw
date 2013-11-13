@@ -6,7 +6,7 @@ NavigationSchoolESProducer::ReturnType CfgNavigationSchoolESProducer::produce(co
 
   // get the field
   edm::ESHandle<MagneticField>                field;
-  iRecord.getRecord<IdealMagneticFieldRecord>().get(field);
+  iRecord.getRecord<IdealMagneticFieldRecord>().get("UniformMf", field);
 
   //get the geometricsearch tracker geometry
   edm::ESHandle<GeometricSearchTracker>         geometricSearchTracker;

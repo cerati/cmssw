@@ -32,7 +32,7 @@ void SeedFromConsecutiveHitsCreator::init(const TrackingRegion & iregion,
   // get propagator
   es.get<TrackingComponentsRecord>().get(thePropagatorLabel, propagatorHandle);
   // mag field
-  es.get<IdealMagneticFieldRecord>().get(bfield);
+  es.get<IdealMagneticFieldRecord>().get("UniformMf", bfield);
   nomField = bfield->nominalValue();
   isBOFF = (0==nomField);  
 }

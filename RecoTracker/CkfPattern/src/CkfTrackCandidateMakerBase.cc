@@ -108,7 +108,7 @@ namespace cms{
 
     //services
     es.get<TrackerRecoGeometryRecord>().get( theGeomSearchTracker );
-    es.get<IdealMagneticFieldRecord>().get( theMagField );
+    es.get<IdealMagneticFieldRecord>().get( "UniformMf", theMagField );
 
     if (!theInitialState){
       // constructor uses the EventSetup, it must be in the setEventSetup were it has a proper value.
