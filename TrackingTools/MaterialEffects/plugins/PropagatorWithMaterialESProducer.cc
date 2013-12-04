@@ -28,9 +28,6 @@ PropagatorWithMaterialESProducer::produce(const TrackingComponentsRecord & iReco
 //     delete _propagator;
 //     _propagator = 0;
 //   }
-  ESHandle<MagneticField> magfield;
-  iRecord.getRecord<IdealMagneticFieldRecord>().get(magfield );
-
 
   std::string pdir = pset_.getParameter<std::string>("PropagationDirection");
   double mass      = pset_.getParameter<double>("Mass");
@@ -45,6 +42,14 @@ PropagatorWithMaterialESProducer::produce(const TrackingComponentsRecord & iReco
   if (pdir == "oppositeToMomentum") dir = oppositeToMomentum;
   if (pdir == "alongMomentum") dir = alongMomentum;
   if (pdir == "anyDirection") dir = anyDirection;
+
+  ESHandle<MagneticField> magfield;
+  iRecord.getRecord<IdealMagneticFieldRecord>().get("UniformMf", magfield);
+
+  if (useRK)
+    iRecord.getRecord<IdealMagneticFieldRecord>().get(magfield );
+  else
+    iRecord.getRecord<IdealMagneticFieldRecord>().get("UniformMf", magfield);
   
   _propagator  = boost::shared_ptr<Propagator>(new PropagatorWithMaterial(dir, mass, &(*magfield),
 									  maxDPhi,useRK,ptMin,
