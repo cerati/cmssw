@@ -5,5 +5,6 @@ SeedFromConsecutiveHitsCreator = cms.PSet(
   propagator = cms.string('PropagatorWithMaterial'),
   SeedMomentumForBOFF = cms.double(5.0),
   OriginTransverseErrorMultiplier = cms.double(1.0),
-  MinOneOverPtError = cms.double(1.0)
+  MinOneOverPtError = cms.double(1.0),
+  SimpleMagneticField = cms.string('UniformMf')
 )

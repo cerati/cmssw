@@ -1,3 +1,4 @@
+
 #include "PropagatorWithMaterialESProducer.h"
 #include "TrackingTools/MaterialEffects/interface/PropagatorWithMaterial.h"
 #include "MagneticField/Engine/interface/MagneticField.h"
@@ -44,16 +45,12 @@ PropagatorWithMaterialESProducer::produce(const TrackingComponentsRecord & iReco
   if (pdir == "anyDirection") dir = anyDirection;
 
   ESHandle<MagneticField> magfield;
-  //iRecord.getRecord<IdealMagneticFieldRecord>().get("UniformMf", magfield);
-  //iRecord.getRecord<IdealMagneticFieldRecord>().get(magfield);
+  if (pset_.exists("SimpleMagneticField"))
+    iRecord.getRecord<IdealMagneticFieldRecord>().get(pset_.getParameter<std::string>("SimpleMagneticField"), magfield);
+  else 
+    iRecord.getRecord<IdealMagneticFieldRecord>().get(magfield);
+  //fixme check that useRK is false when using SimpleMagneticField 
 
-  if (useRK)
-    iRecord.getRecord<IdealMagneticFieldRecord>().get(magfield );
-  else {
-    iRecord.getRecord<IdealMagneticFieldRecord>().get("UniformMf", magfield);
-    //iRecord.getRecord<IdealMagneticFieldRecord>().get(magfield);
-  }
-  
   _propagator  = boost::shared_ptr<Propagator>(new PropagatorWithMaterial(dir, mass, &(*magfield),
 									  maxDPhi,useRK,ptMin,
 									  useOldAnalPropLogic));
