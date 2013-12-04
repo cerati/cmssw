@@ -17,7 +17,8 @@ ckfTrackCandidates = cms.EDProducer("CkfTrackCandidateMaker",
     maxNSeeds = cms.uint32(500000),
     maxSeedsBeforeCleaning = cms.uint32(5000),
 # SeedProducer:SeedLabel descoped to src
-    src = cms.InputTag('globalMixedSeeds'),                                  
+    src = cms.InputTag('globalMixedSeeds'),
+    SimpleMagneticField = cms.string('UniformMf'),
     NavigationSchool = cms.string('SimpleNavigationSchool'),
     TrajectoryBuilder = cms.string('GroupedCkfTrajectoryBuilder'),
     TransientInitialStateEstimatorParameters = cms.PSet(

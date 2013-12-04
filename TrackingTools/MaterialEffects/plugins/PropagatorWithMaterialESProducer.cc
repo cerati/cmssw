@@ -44,12 +44,15 @@ PropagatorWithMaterialESProducer::produce(const TrackingComponentsRecord & iReco
   if (pdir == "anyDirection") dir = anyDirection;
 
   ESHandle<MagneticField> magfield;
-  iRecord.getRecord<IdealMagneticFieldRecord>().get("UniformMf", magfield);
+  //iRecord.getRecord<IdealMagneticFieldRecord>().get("UniformMf", magfield);
+  //iRecord.getRecord<IdealMagneticFieldRecord>().get(magfield);
 
   if (useRK)
     iRecord.getRecord<IdealMagneticFieldRecord>().get(magfield );
-  else
+  else {
     iRecord.getRecord<IdealMagneticFieldRecord>().get("UniformMf", magfield);
+    //iRecord.getRecord<IdealMagneticFieldRecord>().get(magfield);
+  }
   
   _propagator  = boost::shared_ptr<Propagator>(new PropagatorWithMaterial(dir, mass, &(*magfield),
 									  maxDPhi,useRK,ptMin,

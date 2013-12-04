@@ -24,6 +24,7 @@ boost::shared_ptr<TrackingRecHitPropagator>
 TrackingRecHitPropagatorESProducer::produce(const TrackingComponentsRecord& iRecord){ 
    ESHandle<MagneticField> magfield;
    iRecord.getRecord<IdealMagneticFieldRecord>().get("UniformMf", magfield);	 
+   //iRecord.getRecord<IdealMagneticFieldRecord>().get(magfield);	 
    theHitPropagator= boost::shared_ptr<TrackingRecHitPropagator>(new TrackingRecHitPropagator(magfield.product()));
    return theHitPropagator;
 }
