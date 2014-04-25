@@ -358,7 +358,7 @@ int HitPattern::pixelBarrelLayersWithMeasurement() const {
 int HitPattern::pixelEndcapLayersWithMeasurement() const {
   int count = 0;
   uint32_t substr = PixelSubdetector::PixelEndcap;
-  uint32_t NPixForward = 10;
+  uint32_t NPixForward = 15;//fixme hardcoded
   for (uint32_t layer=1; layer<=NPixForward; layer++) {
     if (getTrackerLayerCase(substr, layer) == 0) count++;
   }
